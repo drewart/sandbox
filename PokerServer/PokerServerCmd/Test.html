@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>ajax test</title>
+        <script>
+            function doIt(json) {
+                // Create HTTP request
+                var xmlHttp;
+                if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlHttp = new XMLHttpRequest();
+                } else {// code for IE6, IE5
+                    xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                
+                var url = "http://localhost:9000/poker";
+                
+                var body;
+
+                if (json == 1) {
+
+                    // Build the body of the JSON message
+                    body = '{"hands": [';
+                    body = body + '{ "name": "' + document.getElementById("player1").value + '",';
+                    body = body + ' "hand": [' + document.getElementById("hand1").value + '] }, ';
+
+                    body = body + '{ "name": "' + document.getElementById("player2").value + '",';
+                    body = body + ' "hand": [' + document.getElementById("hand2").value + '] } ';
+                    body = body + '] }';
+                } else {
+                    // build xml body
+                    body = '<?xml version="1.0" encoding="UTF-8"?><hands><hand>';
+                    body = body + '<name>' + document.getElementById("player1").value + '</name>';
+                    var hands = document.getElementById("hand1").value.split(',');
+                    for (var i = 0; i < hands.length; i++) {
+                        body = body + '<card>' + hands[i].trim() + '</card>';
+                    }
+                    body = body + '</hand><hand>';
+                    body = body + '<name>' + document.getElementById("player2").value + '</name>';
+                    hands = document.getElementById("hand2").value.split(',');
+                    for (var i = 0; i < hands.length; i++) {
+                        body = body + '<card>' + hands[i].trim() + '</card>';
+                    }
+
+                    body = body + '</hand></hands>';
+                }
+
+                // Send the HTTP request
+                xmlHttp.open("POST", url, true);
+                xmlHttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+               
+                
+                
+                //debug: alert('sent:' + body);
+                xmlHttp.send(body);
+
+                // Create result handler 
+                xmlHttp.onreadystatechange = function () {
+                    if (xmlHttp.readyState == 4) {
+                        document.getElementById("result").value = xmlHttp.responseText;
+                    } else {
+                        document.getElementById("status").value = document.getElementById("status").value + '  status:' + xmlHttp.status;
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <form>
+            player 1: <input id="player1" name="player1" type="text" /> <br>
+            player 1 Hand : <input id="hand1" name="hand1" type="text" /> <br> <br/><br />
+            player 2: <input id="player2" name="player2" type="text" /> <br>
+            player 2 Hand: <input id="hand2" name="hand2" type="text" /> <br>
+            <input id="postjson" type="button" value="POST json" onclick="doIt(1);"/> <br>
+            <input id="postxml" type="button" value="POST xml" onclick="doIt(0);" />
+            <br/>
+            status : <input id="status" type="text" />
+            result : <input id="result" type="text" />
+            <br />
+            <br/>
+            example: foo & "2H", "4S", "4C", "2D", "4H"<br/>
+            bar & "2S", "8S", "AS", "QS", "3S"<br />
+            
+            <br />
+        </form>
+    </body>
+</html>
