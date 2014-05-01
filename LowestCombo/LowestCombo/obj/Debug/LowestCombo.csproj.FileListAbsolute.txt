@@ -1,0 +1,6 @@
+c:\users\drew\documents\visual studio 2013\Projects\LowestCombo\LowestCombo\bin\Debug\LowestCombo.exe.config
+c:\users\drew\documents\visual studio 2013\Projects\LowestCombo\LowestCombo\bin\Debug\LowestCombo.exe
+c:\users\drew\documents\visual studio 2013\Projects\LowestCombo\LowestCombo\bin\Debug\LowestCombo.pdb
+c:\users\drew\documents\visual studio 2013\Projects\LowestCombo\LowestCombo\obj\Debug\LowestCombo.exe
+c:\users\drew\documents\visual studio 2013\Projects\LowestCombo\LowestCombo\obj\Debug\LowestCombo.pdb
+c:\users\drew\documents\visual studio 2013\Projects\LowestCombo\LowestCombo\obj\Debug\LowestCombo.csprojResolveAssemblyReference.cache
