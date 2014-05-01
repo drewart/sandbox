@@ -18,7 +18,7 @@ public class PlayerHand  implements Comparable {
 		Arrays.sort(hand);		//sort hand to help ranking/score
 	}
 	
-  public enum HandRank { Nothing,Pair,TwoPair,ThreeKind,Straight,Flush,FullHouse,FullHouse,FourKind,StraightFlush };
+  public enum HandRank { Nothing,Pair,TwoPair,ThreeKind,Straight,Flush,FullHouse,FourKind,StraightFlush };
   
   private String playerName;
   private HandRank rank;
@@ -117,34 +117,21 @@ public class PlayerHand  implements Comparable {
 		
 		// count matches
   	for(int i = 0; i < 5; i++) {
-  	{
+  	
   		int rank = hand[i].getRank();
-  		if (matchMap.containsKey(rank))
+  		if (matchMap.containsKey(rank)) {
   			matchMap.get(rank).add(hand[i]);
-  		else
-  		{
+  	  } else {
   			HashSet set = new HashSet()
   			set.put(hand[i]);
   			matchMap.put(rank,set);
   			matchMap.get(rank).add(hand[i])
   	  }
-  	}
   	
-  	for(int i = 0; i < 5; i++) {
-  	{
-  		int rank = hand[i].getRank();
-  		matches[rank]++;
+  	return matchMap;
   	}
 
-  	return false;
+  
+  
 	}
-
-private Card[] findMatches(Card card,)
-{
-	for(int i :
-}
-  
-  
-  
-  
 }

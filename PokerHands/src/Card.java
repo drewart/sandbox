@@ -37,6 +37,9 @@ public class Card implements Comparable
         return value;
     }
 
+    /**
+    * gets the rank/order index of the card
+    */
     public int getRank()
     {
     	return getValueRank();
